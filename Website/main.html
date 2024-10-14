@@ -2,30 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Dropdown Example</title>
+<title>Dropdown and Background Selection</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         padding: 20px;
     }
-    select {
+    select, input {
         width: 200px;
         padding: 5px;
         margin-top: 10px;
     }
+    label {
+        display: block;
+        margin-top: 10px;
+    }
 </style>
+<script>
+    function changeBackground(color) {
+        document.body.style.backgroundColor = color;
+    }
+</script>
 </head>
 <body>
 <h2>User Information</h2>
-<form>
+<form onsubmit="event.preventDefault();">
     <label for="state">Choose your state:</label>
     <select id="state">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
-        <option value="CO">Colorado </option>
+        <!-- Add other states as needed -->
         <option value="WY">Wyoming</option>
-    </select><br>
+    </select>
 
     <label for="disability-rating">Select disability rating:</label>
     <select id="disability-rating">
@@ -39,7 +48,14 @@
         <option value="80">80%</option>
         <option value="90">90%</option>
         <option value="100">100%</option>
-    </select><br>
+    </select>
+
+    <fieldset>
+        <legend>Select a Background Color:</legend>
+        <label><input type="radio" name="background" value="lightblue" onclick="changeBackground('lightblue')"> Light Blue</label>
+        <label><input type="radio" name="background" value="lightgreen" onclick="changeBackground('lightgreen')"> Light Green</label>
+        <label><input type="radio" name="background" value="lightyellow" onclick="changeBackground('lightyellow')"> Light Yellow</label>
+    </fieldset>
 
     <button type="submit">Submit</button>
 </form>
