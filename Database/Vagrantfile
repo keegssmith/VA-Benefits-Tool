@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  
+  # Creates a KVM Virtual Machine  
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.driver = "kvm"
+    libvirt.memory = 1024   # Allocate 1GB of RAM
+    libvirt.cpus = 1        # Allocate 1 CPU core
+  end
+
+  # Define the database server VM
+  config.vm.define "db" do |db|
+    db.vm.box = "generic/ubuntu2004"    # Use Ubuntu 20.04 as the base image
+    db.vm.hostname = "db-server"
+    db.vm.network "private_network", ip: "192.168.56.10"    # Assign a static IP
+    # Add port forwarding
+    db.vm.network "forwarded_port", guest: 3000, host: 3000
+    # Provision MySQL
+    db.vm.provision "shell", inline: <<-SHELL
+      # Update system
+      sudo apt update
+      sudo apt upgrade -y
+
+      # Install MySQL Server
+      sudo apt install -y mysql-server
+
+      # Secure MySQL Installation automatically (simulate input to mysql_secure_installation)
+      sudo mysql --execute="DELETE FROM mysql.user WHERE User='';"
+      sudo mysql --execute="DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+      sudo mysql --execute="DROP DATABASE IF EXISTS test;"
+      sudo mysql --execute="DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
+      sudo mysql --execute="FLUSH PRIVILEGES;"
+
+
+    SHELL
+  end
+end

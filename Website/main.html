@@ -17,27 +17,28 @@
         display: block;
         margin-top: 10px;
     }
-</style>
-<script>
-    function changeBackground(color) {
-        document.body.style.backgroundColor = color;
+    .error {
+        color: red;
+        margin-top: 10px;
     }
-</script>
+</style>
 </head>
 <body>
 <h2>User Information</h2>
-<form onsubmit="event.preventDefault();">
+<form onsubmit="return validateForm();">
     <label for="state">Choose your state:</label>
     <select id="state">
+        <option value="Choose">Choose</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
-        <!-- Add other states as needed -->
+        <option value="CO">Colorado</option>
         <option value="WY">Wyoming</option>
     </select>
 
     <label for="disability-rating">Select disability rating:</label>
     <select id="disability-rating">
+        <option value="None">None</option>
         <option value="10">10%</option>
         <option value="20">20%</option>
         <option value="30">30%</option>
@@ -50,14 +51,10 @@
         <option value="100">100%</option>
     </select>
 
-    <fieldset>
-        <legend>Select a Background Color:</legend>
-        <label><input type="radio" name="background" value="lightblue" onclick="changeBackground('lightblue')"> Light Blue</label>
-        <label><input type="radio" name="background" value="lightgreen" onclick="changeBackground('lightgreen')"> Light Green</label>
-        <label><input type="radio" name="background" value="lightyellow" onclick="changeBackground('lightyellow')"> Light Yellow</label>
-    </fieldset>
-
+    <div id="error-message" class="error"></div>
+    <br>
     <button type="submit">Submit</button>
 </form>
+<script src="script.js"></script>
 </body>
 </html>
