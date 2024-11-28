@@ -69,15 +69,15 @@ for user_disability_rating in range(0, 110, 10):
     
     # Prepare message based on eligibility
     if license_plate and home_loan:
-        message = f"{user_disability_rating}: You qualify for {license_plate}, VA Home Loan COE Eligible & for a Colorado EPIC Pass at Retirement Rate."
+        message = f"{user_disability_rating}%: You qualify for {license_plate}, VA Home Loan COE Eligible & for a Colorado EPIC Pass at Retirement Rate."
     elif license_plate:
-        message = f"{user_disability_rating}: You qualify for {license_plate} & for a Colorado EPIC Pass at Retirement Rate."
+        message = f"{user_disability_rating}%: You qualify for {license_plate} & for a Colorado EPIC Pass at Retirement Rate."
     elif home_loan:
-        message = f"{user_disability_rating}: You qualify for VA Home Loan COE Eligible."
+        message = f"{user_disability_rating}%: You qualify for VA Home Loan COE Eligible."
     elif user_disability_rating >= 10:
-         message = f"{user_disability_rating}: You qualify for Colorado EPIC Pass at Retirement Rate."
+         message = f"{user_disability_rating}%: You qualify for Colorado EPIC Pass at Retirement Rate."
     else:
-        message = f"{user_disability_rating}: You do not qualify for any listed benefits."
+        message = f"{user_disability_rating}%: You do not qualify for any listed benefits."
     
     # Write message to file
     with open(file_path, 'w') as f:
