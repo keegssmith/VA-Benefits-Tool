@@ -5,9 +5,6 @@ DECLARE @ColumnName NVARCHAR(MAX); -- Variable to hold the column name
 DECLARE @SQL NVARCHAR(MAX); -- Variable to hold the dynamic SQL
 DECLARE @RowCount INT; -- Variable to check if the file has data
 
--- Define the relative base path (relative to the SQL Server's working directory)
-DECLARE @BasePath NVARCHAR(MAX) = '.\States\'; -- '.' represents the current directory
-
 -- Start the loop for each state
 DECLARE @StateCursor CURSOR;
 SET @StateCursor = CURSOR FOR
@@ -25,7 +22,7 @@ BEGIN
     WHILE @Rating <= 100
     BEGIN
         -- Construct the file path dynamically based on the state and disability rating
-        SET @FilePath = @BasePath + @StateName + '\' + CAST(@Rating AS NVARCHAR) + '\' + CAST(@Rating AS NVARCHAR) + '.txt';
+        SET @FilePath = 'C:\Dev\dev\School\CS3300\VA-Benefits-Tool\States\' + @StateName + '\' + CAST(@Rating AS NVARCHAR) + '\' + CAST(@Rating AS NVARCHAR) + '.txt';
 
         -- Construct the column name dynamically
         SET @ColumnName = 'DR_' + CAST(@Rating AS NVARCHAR);
