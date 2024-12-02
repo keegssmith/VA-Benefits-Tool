@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-# URLs of the websites
+#URLs of the websites
 url_auto = "https://dmv.colorado.gov/license-plates-military"
 url_home = "https://www.va.gov/housing-assistance/home-loans/eligibility/"
 
-# Eligibility criteria
+#Eligibility criteria
 eligibility_requirements = {
     "Disabled Veteran License Plate": {
         "criteria": ["Permanent Service-Connected Disabled"],
@@ -24,7 +24,7 @@ eligibility_requirements = {
     }
 }
 
-# Functions to check eligibility
+#Functions to check eligibility
 def check_license_plate_eligibility(sections, user_disability_rating, gender):
     for name, requirement in eligibility_requirements.items():
         if "criteria" in requirement:
@@ -47,14 +47,15 @@ def check_home_loan_eligibility(sections, days_of_service):
 response_auto = requests.get(url_auto)
 response_home = requests.get(url_home)
 
-# Parse content
+#Parse content
 soup_auto = BeautifulSoup(response_auto.content, "html.parser")
 soup_home = BeautifulSoup(response_home.content, "html.parser")
 
-# Find relevant sections
+#Find relevant sections
 auto_sections = soup_auto.find_all('p')
 home_sections = soup_home.find_all('p')
 
+#Creating Files
 base_directory = 'Colorado'
 for user_disability_rating in range(0, 110, 10):
     folder_path = os.path.join(base_directory, str(user_disability_rating))
@@ -67,7 +68,7 @@ for user_disability_rating in range(0, 110, 10):
     license_plate = check_license_plate_eligibility(auto_sections, user_disability_rating, gender)
     home_loan = check_home_loan_eligibility(home_sections, days_of_service)
     
-    # Prepare message based on eligibility
+    #Prepare message based on eligibility
     if license_plate and home_loan:
         message = f"{user_disability_rating}%: You qualify for {license_plate}, VA Home Loan COE Eligible & for a Colorado EPIC Pass at Retirement Rate."
     elif license_plate:
@@ -79,7 +80,7 @@ for user_disability_rating in range(0, 110, 10):
     else:
         message = f"{user_disability_rating}%: You do not qualify for any listed benefits."
     
-    # Write message to file
+    #Write message to file
     with open(file_path, 'w') as f:
         f.write(message)
 
