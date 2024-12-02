@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35425.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "va-benefits-tool", "va-benefits-tool.vbproj", "{02EBF8A3-7272-41AE-A9FD-F1AAC01AFBE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02EBF8A3-7272-41AE-A9FD-F1AAC01AFBE5}.Debug|x86.ActiveCfg = Debug|x86
+		{02EBF8A3-7272-41AE-A9FD-F1AAC01AFBE5}.Debug|x86.Build.0 = Debug|x86
+		{02EBF8A3-7272-41AE-A9FD-F1AAC01AFBE5}.Release|x86.ActiveCfg = Release|x86
+		{02EBF8A3-7272-41AE-A9FD-F1AAC01AFBE5}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2FDA3CF-A8AC-406D-96F0-3E9189547E67}
+	EndGlobalSection
+EndGlobal
