@@ -11,7 +11,7 @@ const dbConfig = {
     user: "yourDatabaseUser",
     password: "yourDatabasePassword",
     server: "localhost", // Change to your database server
-    database: "benefitsdb",
+    database: "yourDatabaseName",
     options: {
         encrypt: true, // For Azure
         trustServerCertificate: true, // For local development
