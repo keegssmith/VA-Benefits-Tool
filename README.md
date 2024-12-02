@@ -43,3 +43,13 @@ The **VA-Benefits-Tool** is a platform designed to simplify the process of deter
    Install the following libraries:
    ```bash
    pip install requests beautifulsoup4
+
+3.  **Run the Database**
+
+
+4. **Run the HTML file locally**
+  Install the Live Server Extension (VS Code) by Ritwick Dey
+
+  Right-click the main.html and select "Open with Live Server"
+
+  
