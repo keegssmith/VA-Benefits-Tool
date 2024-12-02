@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,6 +90,14 @@
             .print-button:hover {
                 background-color: #1c7a2c;
             }
+
+        /* Added styles for the output div */
+        #output {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -167,14 +174,6 @@
                 <option value="100">100%</option>
             </select>
 
-            <label for="gender">Select gender:</label>
-            <select id="gender">
-                <option value="None">None</option>
-                <option value="man">Man</option>
-                <option value="woman">Woman</option>
-                <option value="non-binary">Non-Binary</option>
-            </select>
-
             <div id="error-message" class="error"></div>
             <br>
             <div class="button-container">
@@ -182,6 +181,8 @@
                 <button type="button" class="print-button" onclick="window.print()">Print</button>
             </div>
         </form>
+        <!-- Add the output div below the form -->
+        <div id="output"></div>
     </div>
     <script src="script.js"></script>
 </body>
