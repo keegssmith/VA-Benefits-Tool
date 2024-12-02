@@ -1,3 +1,4 @@
+
 // Import necessary modules for backend functionality
 const express = require("express");
 const fs = require("fs");
@@ -6,15 +7,13 @@ const path = require("path");
 
 const app = express();
 
-// Database configuration
+// Database configuration (No username/password for local development)
 const dbConfig = {
-    user: "yourDatabaseUser",
-    password: "yourDatabasePassword",
-    server: "localhost", // Change to your database server
-    database: "yourDatabaseName",
+    server: "", // Use your local database server
+    database: "yourDatabaseName", // Replace with your database name
     options: {
-        encrypt: true, // For Azure
-        trustServerCertificate: true, // For local development
+        encrypt: false, // No encryption needed for local dev
+        trustServerCertificate: true, // For self-signed certificates
     },
 };
 
