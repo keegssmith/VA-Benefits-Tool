@@ -181,50 +181,7 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById("benefits-form").addEventListener("submit", handleSubmit);
-
-        async function handleSubmit(event) {
-            event.preventDefault(); // Prevent form submission
-            const state = document.getElementById('state').value;
-            const rating = document.getElementById('disability-rating').value;
-
-            if (state === "None" || rating === "None") {
-                alert("Please select valid options.");
-                return;
-            }
-
-            try {
-                // Fetch data from the server
-                const response = await fetch(`/api/getBenefits?state=${state}&rating=${rating}`);
-
-                if (!response.ok) {
-                    throw new Error(`Error: ${response.statusText}`);
-                }
-
-                const data = await response.json();
-
-                // Display the benefits
-                if (data && data.benefits) {
-                    document.getElementById('benefits').textContent = data.benefits;
-                } else {
-                    document.getElementById('benefits').textContent = "No data available for the selected state and rating.";
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                document.getElementById('benefits').textContent = "An error occurred while fetching data. Please try again.";
-            }
-
-            // Show results section and hide form section
-            document.getElementById('form-section').classList.add('hidden');
-            document.getElementById('results-section').classList.remove('hidden');
-        }
-
-        function goBack() {
-            // Show form section and hide results section
-            document.getElementById('form-section').classList.remove('hidden');
-            document.getElementById('results-section').classList.add('hidden');
-        }
-    </script>
+    <!-- Link external JavaScript -->
+    <script src="websiteScript.js"></script>
 </body>
 </html>

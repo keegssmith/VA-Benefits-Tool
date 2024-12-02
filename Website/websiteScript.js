@@ -1,38 +1,51 @@
-async function validateForm() {
-    const state = document.getElementById('state').value;
-    const rating = document.getElementById('disability-rating').value;
-    const errorMessage = document.getElementById('error-message');
-    const outputDiv = document.getElementById('output'); // Add this to display the result
+// Add event listener to form
+document.getElementById("benefits-form").addEventListener("submit", handleSubmit);
 
-    // Validate that valid options are selected
+async function handleSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const state = document.getElementById("state").value;
+    const rating = document.getElementById("disability-rating").value;
+    const errorMessage = document.getElementById("error-message");
+    const outputDiv = document.getElementById("benefits");
+
+    // Validate user input
     if (state === "None" || rating === "None") {
-        errorMessage.textContent = "You need to choose valid options for both state and disability rating.";
-        outputDiv.textContent = ""; // Clear any previous output
-        return false;
+        errorMessage.textContent = "Please select valid options for both state and disability rating.";
+        return;
     }
 
-    errorMessage.textContent = ""; // Clear error message if validation passes
+    // Clear any previous error messages
+    errorMessage.textContent = "";
 
     try {
-        // Fetch data from the server
+        // Fetch data from the backend API
         const response = await fetch(`/api/getBenefits?state=${state}&rating=${rating}`);
-        
+
         if (!response.ok) {
-            throw new Error(`Error: ${response.statusText}`);
+            throw new Error(`Server responded with status: ${response.status}`);
         }
 
         const data = await response.json();
 
-        // Display the data on the page
+        // Display benefits or fallback message
         if (data && data.benefits) {
-            outputDiv.textContent = `For state ${state} and disability rating ${rating}%, the benefits are: ${data.benefits}`;
+            outputDiv.textContent = data.benefits;
         } else {
             outputDiv.textContent = "No data available for the selected state and disability rating.";
         }
-    } catch (error) {
-        console.error(error);
-        outputDiv.textContent = "An error occurred while fetching data. Please try again.";
-    }
 
-    return false; // Prevent the form from submitting
+        // Hide form and show results
+        document.getElementById("form-section").classList.add("hidden");
+        document.getElementById("results-section").classList.remove("hidden");
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        errorMessage.textContent = "An error occurred while fetching the data. Please try again.";
+    }
+}
+
+function goBack() {
+    // Show form and hide results
+    document.getElementById("form-section").classList.remove("hidden");
+    document.getElementById("results-section").classList.add("hidden");
 }
