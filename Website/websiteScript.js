@@ -9,8 +9,8 @@ const app = express();
 
 // Database configuration (No username/password for local development)
 const dbConfig = {
-    server: "", // Use your local database server
-    database: "yourDatabaseName", // Replace with your database name
+    server: "localhost", // Use your local database server
+    database: "benefitsdb", // Replace with your database name
     options: {
         encrypt: false, // No encryption needed for local dev
         trustServerCertificate: true, // For self-signed certificates
