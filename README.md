@@ -53,3 +53,4 @@ The **VA-Benefits-Tool** is a platform designed to simplify the process of deter
   Right-click the main.html and select "Open with Live Server"
 
   
+3. 
