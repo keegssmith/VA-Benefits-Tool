@@ -43,5 +43,3 @@ The **VA-Benefits-Tool** is a platform designed to simplify the process of deter
    Install the following libraries:
    ```bash
    pip install requests beautifulsoup4
-
-3. 
